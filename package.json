@@ -1,0 +1,35 @@
+{
+  "name": "rssreader-s258",
+  "version": "1.0.0",
+  "description": "Simple RSS reader",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fortymorgan/project-lvl3-s258.git"
+  },
+  "keywords": [
+    "rss",
+    "reader"
+  ],
+  "author": "Dmitriy Zhmudikov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fortymorgan/project-lvl3-s258/issues"
+  },
+  "homepage": "https://github.com/fortymorgan/project-lvl3-s258#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jest": "^21.15.1",
+    "jest": "^22.4.3"
+  }
+}
