@@ -7,7 +7,7 @@ import modalCallback from './modal';
 export default () => {
   const state = {
     feedsList: getFeedsList(),
-    validInput: true,
+    validInput: false,
   };
 
   const input = document.querySelector('input');
@@ -27,7 +27,7 @@ export default () => {
 
   button.addEventListener('click', (event) => {
     event.preventDefault();
-    if (state.validInput && input.value !== '') {
+    if (state.validInput) {
       state.feedsList.push(input.value);
       toLocalStorage(state.feedsList);
       render(state.feedsList);
