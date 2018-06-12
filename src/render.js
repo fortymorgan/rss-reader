@@ -1,6 +1,17 @@
 import getRssData from './getter';
 
+const resetList = () => {
+  const input = document.querySelector('input');
+  input.value = '';
+
+  const listGroup = document.querySelector('.list-group');
+  if (listGroup) {
+    listGroup.remove();
+  }
+};
+
 export default (feedsList) => {
+  resetList();
   const listGroup = document.createElement('div');
   listGroup.classList.add('list-group');
 
