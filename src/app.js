@@ -5,30 +5,36 @@ import { getFeedsList, toLocalStorage } from './storage';
 import modalCallback from './modal';
 
 export default () => {
-  const feedsList = getFeedsList();
+  const state = {
+    feedsList: getFeedsList(),
+    validInput: true,
+  };
 
   const input = document.querySelector('input');
+  const button = document.querySelector('button');
 
   input.addEventListener('input', () => {
-    if (!isInputValid(input.value, feedsList)) {
-      input.classList.add('is-invalid');
-    } else {
+    state.validInput = isInputValid(input.value, state.feedsList);
+
+    if (state.validInput || input.value === '') {
       input.classList.remove('is-invalid');
+      button.disabled = false;
+    } else {
+      input.classList.add('is-invalid');
+      button.disabled = true;
     }
   });
 
-  const button = document.querySelector('button');
-
   button.addEventListener('click', (event) => {
     event.preventDefault();
-    if (isInputValid(input.value, feedsList)) {
-      feedsList.push(input.value);
-      toLocalStorage(feedsList);
-      render(feedsList);
+    if (state.validInput && input.value !== '') {
+      state.feedsList.push(input.value);
+      toLocalStorage(state.feedsList);
+      render(state.feedsList);
     }
   });
 
   $('#modal').on('show.bs.modal', modalCallback);
 
-  render(feedsList);
+  render(state.feedsList);
 };
