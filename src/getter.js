@@ -16,5 +16,5 @@ export default feed => axios.get(corsProxy + feed)
     errorMessage.textContent = `Error while downloading ${feed}`;
 
     const jumbotron = document.querySelector('.jumbotron');
-    jumbotron.next(errorMessage);
+    jumbotron.after(errorMessage);
   });
