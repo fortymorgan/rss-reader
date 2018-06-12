@@ -1,6 +1,8 @@
+import $ from 'jquery';
 import render from './render';
 import isInputValid from './validator';
 import { getFeedsList, toLocalStorage } from './storage';
+import modalCallback from './modal';
 
 export default () => {
   const feedsList = getFeedsList();
@@ -25,6 +27,8 @@ export default () => {
       render(feedsList);
     }
   });
+
+  $('#modal').on('show.bs.modal', modalCallback);
 
   render(feedsList);
 };
