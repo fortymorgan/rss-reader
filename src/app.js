@@ -11,9 +11,9 @@ export default () => {
 
   input.addEventListener('input', () => {
     if (!isInputValid(input.value, feedsList)) {
-      input.style.boxShadow = '0 0 2px 2px #f00';
+      input.classList.add('is-invalid');
     } else {
-      input.style.boxShadow = '';
+      input.classList.remove('is-invalid');
     }
   });
 
