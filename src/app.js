@@ -1,19 +1,14 @@
 import render from './render';
 import isInputValid from './validator';
+import { getFeedsList, toLocalStorage } from './storage';
 
 export default () => {
-  const feedsList = window.localStorage.getItem('feeds') ?
-    JSON.parse(window.localStorage.getItem('feeds')) : [];
+  const feedsList = getFeedsList();
 
   const input = document.querySelector('input');
 
-  const toLocalStorage = () => {
-    const jsonString = JSON.stringify(feedsList);
-    window.localStorage.setItem('feeds', jsonString);
-  };
-
   input.addEventListener('input', () => {
-    if (!isInputValid(input.value) || feedsList.includes(input.value)) {
+    if (!isInputValid(input.value, feedsList)) {
       input.style.boxShadow = '0 0 2px 2px #f00';
     } else {
       input.style.boxShadow = '';
@@ -24,10 +19,9 @@ export default () => {
 
   button.addEventListener('click', (event) => {
     event.preventDefault();
-    if (isInputValid(input.value)) {
+    if (isInputValid(input.value, feedsList)) {
       feedsList.push(input.value);
-      toLocalStorage();
-      input.value = '';
+      toLocalStorage(feedsList);
       render(feedsList);
     }
   });
