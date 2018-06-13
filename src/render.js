@@ -1,19 +1,12 @@
 import getRssData from './getter';
-
-const resetList = () => {
-  const input = document.querySelector('input');
-  input.value = '';
-
-  const listGroup = document.querySelector('.list-group');
-  if (listGroup) {
-    listGroup.remove();
-  }
-};
+import clearErrorsAndInput from './cleaner';
 
 export default (feedsList) => {
-  resetList();
-  const listGroup = document.createElement('div');
-  listGroup.classList.add('list-group');
+  clearErrorsAndInput();
+
+  const button = document.querySelector('button');
+
+  const listGroup = document.querySelector('.list-group');
 
   feedsList.forEach((feed) => {
     getRssData(feed).then((dataArray) => {
@@ -30,8 +23,7 @@ export default (feedsList) => {
         return html;
       }).join('');
       listGroup.innerHTML += htmlListItems;
+      button.disabled = false;
     });
   });
-
-  document.body.append(listGroup);
 };
