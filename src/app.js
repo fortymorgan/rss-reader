@@ -40,7 +40,7 @@ export default () => {
     event.preventDefault();
     if (state.validInput) {
       state.feedsList.push(input.value);
-      toLocalStorage(state.feedsList);
+      toLocalStorage('feeds', state.feedsList);
       button.disabled = true;
       renderOnState();
     }
