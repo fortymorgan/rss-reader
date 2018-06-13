@@ -31,7 +31,7 @@ const render = (feedsList) => {
 
 export default () => {
   const feedsToRender = state.feedsList
-    .filter(feed => !renderedState.feedsList.includes(feed));
+    .filter(feed => !renderedState.feedsList.map(item => item.url).includes(feed.url));
   render(feedsToRender);
   renderedState.feedsList = [...state.feedsList];
 };
