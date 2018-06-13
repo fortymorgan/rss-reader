@@ -1,19 +1,11 @@
 import $ from 'jquery';
 import render from './render';
 import isInputValid from './validator';
-import { getFeedsList, toLocalStorage } from './storage';
+import { toLocalStorage } from './storage';
 import modalCallback from './modal';
+import { state, previousState } from './state';
 
 export default () => {
-  const state = {
-    feedsList: getFeedsList(),
-    validInput: false,
-  };
-
-  const previousState = {
-    feedsList: [],
-  };
-
   const input = document.querySelector('input');
   const button = document.querySelector('button');
 
