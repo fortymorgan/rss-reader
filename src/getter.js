@@ -12,9 +12,12 @@ export default feed => axios.get(corsProxy + feed.url)
     return itemsData;
   }).catch(() => {
     const errorMessage = document.createElement('div');
-    errorMessage.setAttribute('class', 'alert alert-danger');
+    errorMessage.setAttribute('class', 'alert alert-danger alert-dismissible fade show');
     errorMessage.setAttribute('role', 'alert');
-    errorMessage.textContent = `Error while downloading ${feed.url}`;
+    errorMessage.innerHTML = `Error while downloading ${feed.url}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>`;
 
     const listGroup = document.querySelector('.list-group');
     listGroup.before(errorMessage);
