@@ -1,4 +1,7 @@
 export default (xml) => {
+  const lastBuildDate = xml.querySelector('lastBuildDate');
+  const lastUpdate = new Date(lastBuildDate.textContent);
+
   const items = [...xml.querySelectorAll('item')];
 
   const itemsData = items.map((item) => {
@@ -9,5 +12,5 @@ export default (xml) => {
     return { title, description, link };
   });
 
-  return itemsData;
+  return { itemsData, lastUpdate };
 };
