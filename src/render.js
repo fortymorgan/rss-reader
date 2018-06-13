@@ -13,15 +13,13 @@ const render = (feedsList) => {
     getRssData(feed).then((feedData) => {
       feedData.forEach(({ description, link, title }) => {
         renderedState.headers.push(title);
-        const html = `<div>
-          <a href="${link}" class="list-group-item list-group-item-action flex-column align-items-start" target="_blank">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">${title}</h5>
-            </div>
+        const html = `<li class="list-group-item">
+          <a href="${link}" class="list-group-item-action flex-column align-items-start" target="_blank">
+            <h5 class="mb-1">${title}</h5>
             <p class="mb-1">${description}</p>
           </a>
           <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal">More...</button>
-        </div>`;
+        </li>`;
         listGroup.innerHTML += html;
       });
       button.disabled = false;
