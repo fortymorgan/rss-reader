@@ -8,8 +8,7 @@ export default feed => axios.get(corsProxy + feed.url)
   .then((data) => {
     const parser = new DOMParser();
     const xml = parser.parseFromString(data, 'application/xml');
-    const { itemsData } = parseRssXml(xml);
-    return itemsData;
+    return parseRssXml(xml);
   }).catch(() => {
     const errorMessage = document.createElement('div');
     errorMessage.setAttribute('class', 'alert alert-danger alert-dismissible fade show');

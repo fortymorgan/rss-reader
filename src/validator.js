@@ -1,5 +1,5 @@
 import isURL from 'validator/lib/isURL';
-import { state } from './state';
+import state from './state';
 
 export default string =>
   (isURL(string, { require_protocol: true }) &&
