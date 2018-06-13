@@ -6,6 +6,4 @@ script:
   - make lint
   - make test
   - make build
-
-after_success:
-  - surge --project ./ --domain rssreader-s258.surge.sh
+  - make publish
