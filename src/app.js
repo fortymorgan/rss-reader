@@ -24,7 +24,7 @@ export default () => {
   button.addEventListener('click', (event) => {
     event.preventDefault();
     if (state.validInput) {
-      state.feedsList.push(input.value);
+      state.feedsList.push({ url: input.value });
       toLocalStorage('feeds', state.feedsList);
       button.disabled = true;
       render();
