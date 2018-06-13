@@ -11,7 +11,7 @@ export default () => {
   const button = document.querySelector('button');
 
   input.addEventListener('input', () => {
-    state.validInput = isInputValid(input.value, state.feedsList);
+    state.validInput = isInputValid(input.value);
 
     if (state.validInput || input.value === '') {
       input.classList.remove('is-invalid');
