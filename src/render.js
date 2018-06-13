@@ -1,7 +1,8 @@
 import getRssData from './getter';
 import clearErrorsAndInput from './cleaner';
+import { state, previousState } from './state';
 
-export default (feedsList) => {
+const render = (feedsList) => {
   clearErrorsAndInput();
 
   const button = document.querySelector('button');
@@ -26,4 +27,11 @@ export default (feedsList) => {
       button.disabled = false;
     });
   });
+};
+
+export default () => {
+  const feedsToRender = state.feedsList
+    .filter(feed => !previousState.feedsList.includes(feed));
+  render(feedsToRender);
+  previousState.feedsList = [...state.feedsList];
 };

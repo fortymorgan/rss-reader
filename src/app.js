@@ -3,18 +3,11 @@ import render from './render';
 import isInputValid from './validator';
 import { toLocalStorage } from './storage';
 import modalCallback from './modal';
-import { state, previousState } from './state';
+import { state } from './state';
 
 export default () => {
   const input = document.querySelector('input');
   const button = document.querySelector('button');
-
-  const renderOnState = () => {
-    const feedsToRender = state.feedsList
-      .filter(feed => !previousState.feedsList.includes(feed));
-    render(feedsToRender);
-    previousState.feedsList = [...state.feedsList];
-  };
 
   input.addEventListener('input', () => {
     state.validInput = isInputValid(input.value, state.feedsList);
@@ -34,11 +27,11 @@ export default () => {
       state.feedsList.push(input.value);
       toLocalStorage('feeds', state.feedsList);
       button.disabled = true;
-      renderOnState();
+      render();
     }
   });
 
   $('#modal').on('show.bs.modal', modalCallback);
 
-  renderOnState();
+  render();
 };
