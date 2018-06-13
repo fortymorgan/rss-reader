@@ -5,6 +5,6 @@ export const state = {
   validInput: false,
 };
 
-export const previousState = {
+export const renderedState = {
   feedsList: [],
 };
