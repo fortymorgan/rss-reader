@@ -12,6 +12,7 @@ const render = (feedsList) => {
   feedsList.forEach((feed) => {
     getRssData(feed).then((feedData) => {
       feedData.forEach(({ description, link, title }) => {
+        renderedState.headers.push(title);
         const html = `<div>
           <a href="${link}" class="list-group-item list-group-item-action flex-column align-items-start" target="_blank">
             <div class="d-flex w-100 justify-content-between">

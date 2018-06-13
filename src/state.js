@@ -7,4 +7,5 @@ export const state = {
 
 export const renderedState = {
   feedsList: [],
+  headers: [],
 };
