@@ -4,6 +4,7 @@ import isInputValid from './validator';
 import { toLocalStorage } from './storage';
 import modalCallback from './modal';
 import { state } from './state';
+import update from './updater';
 
 export default () => {
   const input = document.querySelector('input');
@@ -34,4 +35,5 @@ export default () => {
   $('#modal').on('show.bs.modal', modalCallback);
 
   render();
+  setInterval(() => update(), 5000);
 };
