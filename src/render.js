@@ -10,8 +10,8 @@ const render = (feedsList) => {
   const listGroup = document.querySelector('.list-group');
 
   feedsList.forEach((feed) => {
-    getRssData(feed).then((dataArray) => {
-      const htmlListItems = dataArray.map(({ description, link, title }) => {
+    getRssData(feed).then((feedData) => {
+      const htmlListItems = feedData.map(({ description, link, title }) => {
         const html = `<div>
           <a href="${link}" class="list-group-item list-group-item-action flex-column align-items-start" target="_blank">
             <div class="d-flex w-100 justify-content-between">
