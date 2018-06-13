@@ -10,8 +10,19 @@ export default () => {
     validInput: false,
   };
 
+  const previousState = {
+    feedsList: [],
+  };
+
   const input = document.querySelector('input');
   const button = document.querySelector('button');
+
+  const renderOnState = () => {
+    const feedsToRender = state.feedsList
+      .filter(feed => !previousState.feedsList.includes(feed));
+    render(feedsToRender);
+    previousState.feedsList = [...state.feedsList];
+  };
 
   input.addEventListener('input', () => {
     state.validInput = isInputValid(input.value, state.feedsList);
@@ -30,11 +41,12 @@ export default () => {
     if (state.validInput) {
       state.feedsList.push(input.value);
       toLocalStorage(state.feedsList);
-      render(state.feedsList);
+      button.disabled = true;
+      renderOnState();
     }
   });
 
   $('#modal').on('show.bs.modal', modalCallback);
 
-  render(state.feedsList);
+  renderOnState();
 };
