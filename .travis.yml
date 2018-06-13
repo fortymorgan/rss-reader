@@ -6,4 +6,6 @@ script:
   - make lint
   - make test
   - make build
+
+after_success:
   - make publish
