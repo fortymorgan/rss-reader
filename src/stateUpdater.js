@@ -1,4 +1,4 @@
-import { renderFeeds } from './render';
+import { renderFeeds, renderErrors } from './render';
 import getRssData from './getter';
 import { toLocalStorage } from './storage';
 
@@ -19,6 +19,11 @@ export default (state) => {
         renderFeeds(state);
         state.rendered.items.push(...state.toRender.items);
         state.clearItemsToRender();
+      })
+      .catch(() => {
+        state.errors.push(feed.url);
+        renderErrors(state);
+        state.clearErrors();
       });
     state.rendered.feeds.push(feed);
   });

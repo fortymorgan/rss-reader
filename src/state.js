@@ -4,6 +4,7 @@ export default class State {
   constructor() {
     this.feedsList = getFeedsList();
     this.validInput = false;
+    this.errors = [];
     this.rendered = {
       feeds: [],
       items: [],
@@ -24,5 +25,9 @@ export default class State {
 
   clearFeedsList() {
     this.feedsList = [];
+  }
+
+  clearErrors() {
+    this.errors = [];
   }
 }

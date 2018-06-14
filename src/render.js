@@ -37,3 +37,18 @@ export const renderUpdates = (state) => {
     listGroup.prepend(listItem);
   });
 };
+
+export const renderErrors = (state) => {
+  state.errors.forEach((error) => {
+    const errorMessage = document.createElement('div');
+    errorMessage.setAttribute('class', 'alert alert-danger alert-dismissible fade show');
+    errorMessage.setAttribute('role', 'alert');
+    errorMessage.innerHTML = `Error while downloading ${error}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>`;
+
+    const listGroup = document.querySelector('.list-group');
+    listGroup.before(errorMessage);
+  });
+};
