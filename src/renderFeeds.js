@@ -1,8 +1,7 @@
 import clearErrorsAndInput from './cleaner';
-import state from './state';
 import generateItemHtml from './itemGenarator';
 
-export default () => {
+export default (state) => {
   clearErrorsAndInput();
 
   const button = document.querySelector('button');

@@ -2,11 +2,23 @@ import $ from 'jquery';
 import updateState from './stateUpdater';
 import isInputValid from './validator';
 import modalCallback from './modal';
-import state from './state';
 import { getFeedsList } from './storage';
 import update from './feedsUpdater';
 
 export default () => {
+  const state = {
+    feedsList: getFeedsList(),
+    validInput: false,
+    rendered: {
+      feeds: [],
+      items: [],
+    },
+    toRender: {
+      feeds: getFeedsList(),
+      items: [],
+    },
+  };
+
   const input = document.querySelector('input');
   const button = document.querySelector('button');
 
@@ -26,13 +38,12 @@ export default () => {
     event.preventDefault();
     if (state.validInput) {
       button.disabled = true;
-      updateState([{ url: input.value }]);
+      updateState(state);
     }
   });
 
   $('#modal').on('show.bs.modal', modalCallback);
 
-  const feedsFromStorage = getFeedsList();
-  updateState(feedsFromStorage);
-  setTimeout(() => update(), 5000);
+  updateState(state);
+  setTimeout(() => update(state), 5000);
 };

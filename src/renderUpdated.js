@@ -1,7 +1,6 @@
-import state from './state';
 import generateItemHtml from './itemGenarator';
 
-export default () => {
+export default (state) => {
   const listGroup = document.querySelector('.list-group');
 
   state.toRender.items.forEach((item) => {

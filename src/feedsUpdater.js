@@ -1,9 +1,8 @@
-import state from './state';
 import { toLocalStorage } from './storage';
 import getRssData from './getter';
 import renderUpdated from './renderUpdated';
 
-const update = () => {
+const update = (state) => {
   const feedsWithDate = [];
   state.feedsList.forEach((feed) => {
     getRssData(feed)
@@ -12,19 +11,20 @@ const update = () => {
           const renderedTitles = state.rendered.items.map(renderedItem => renderedItem.title);
           const newItems = itemsData.filter(item => !renderedTitles.includes(item.title));
           state.toRender.items.push(...newItems);
-          renderUpdated();
+          renderUpdated(state);
           state.rendered.items.push(...state.toRender.items);
         }
-        state.toRender.items = [];
+        state.toRender.items.splice(0);
         feedsWithDate.push({ url: feed.url, lastUpdate });
       }).then(() => {
         if (feedsWithDate.length === state.feedsList.length) {
-          state.feedsList = feedsWithDate;
+          state.feedsList.splice(0);
+          state.feedsList.push(...feedsWithDate);
           toLocalStorage('feeds', state.feedsList);
-          setTimeout(() => update(), 5000);
+          setTimeout(() => update(state), 5000);
         }
       })
-      .catch(() => setTimeout(() => update(), 5000));
+      .catch(() => setTimeout(() => update(state), 5000));
   });
 };
 
