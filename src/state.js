@@ -1,4 +1,5 @@
 import { getFeedsList, toLocalStorage } from './storage';
+import { renderFeeds, renderUpdates, renderErrors } from './render';
 
 export default class State {
   constructor() {
@@ -19,14 +20,6 @@ export default class State {
     this.toRender.feeds = [];
   }
 
-  clearItemsToRender() {
-    this.toRender.items = [];
-  }
-
-  clearErrors() {
-    this.errors = [];
-  }
-
   addToFeedsList(url) {
     this.feedsList.push({ url });
     toLocalStorage('feeds', this.feedsList);
@@ -36,25 +29,38 @@ export default class State {
     this.toRender.feeds.push({ url });
   }
 
-  addItemsToRender(items) {
-    this.toRender.items.push(...items);
-  }
-
-  checkRenderedItems() {
-    this.rendered.items.push(...this.toRender.items);
-    this.clearItemsToRender();
-  }
-
   updateFeedsList(feedsList) {
     this.feedsList = feedsList;
     toLocalStorage('feeds', this.feedsList);
   }
 
-  checkError(url) {
-    this.errors.push(url);
+  checkError(feed) {
+    this.errors.push(feed);
+    renderErrors(this);
+    this.errors = [];
   }
 
   checkRenderedFeed(feed) {
     this.rendered.feeds.push(feed);
+  }
+
+  getNewItems(itemsData) {
+    const renderedTitles = this.rendered.items.map(renderedItem => renderedItem.title);
+    return itemsData.filter(item => !renderedTitles.includes(item.title));
+  }
+
+  addItemsFromUpdate(items) {
+    this.addItemsWithRender(items, renderUpdates);
+  }
+
+  addItemsFromFeed(items) {
+    this.addItemsWithRender(items, renderFeeds);
+  }
+
+  addItemsWithRender(items, renderer) {
+    this.toRender.items.push(...items);
+    renderer(this);
+    this.rendered.items.push(...this.toRender.items);
+    this.toRender.items = [];
   }
 }

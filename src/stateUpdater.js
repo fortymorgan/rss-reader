@@ -1,4 +1,3 @@
-import { renderFeeds, renderErrors } from './render';
 import getRssData from './getter';
 
 export default (state) => {
@@ -12,14 +11,10 @@ export default (state) => {
   state.toRender.feeds.forEach((feed) => {
     getRssData(feed)
       .then(({ itemsData }) => {
-        state.addItemsToRender(itemsData);
-        renderFeeds(state);
-        state.checkRenderedItems();
+        state.addItemsFromFeed(itemsData);
       })
       .catch(() => {
-        state.checkError(feed.url);
-        renderErrors(state);
-        state.clearErrors();
+        state.checkError(feed);
       });
     state.checkRenderedFeed(feed);
   });

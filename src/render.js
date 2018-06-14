@@ -43,7 +43,7 @@ export const renderErrors = (state) => {
     const errorMessage = document.createElement('div');
     errorMessage.setAttribute('class', 'alert alert-danger alert-dismissible fade show');
     errorMessage.setAttribute('role', 'alert');
-    errorMessage.innerHTML = `Error while downloading ${error}
+    errorMessage.innerHTML = `Error while downloading ${error.url}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>`;
