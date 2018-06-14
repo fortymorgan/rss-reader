@@ -51,6 +51,16 @@ export default () => {
     }
   });
 
+  const exampleLink = document.querySelector('.example');
+  exampleLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    input.value = exampleLink.href;
+    state.validInput = true;
+    toggleInputStyle.valid();
+  });
+
+  $('[data-toggle="tooltip"]').tooltip();
+
   $('#modal').on('show.bs.modal', modalCallback);
 
   updateState(state);
