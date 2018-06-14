@@ -14,11 +14,11 @@ const update = (state) => {
           renderUpdates(state);
           state.rendered.items.push(...state.toRender.items);
         }
-        state.toRender.items.splice(0);
+        state.toRenderClear.items();
         feedsWithDate.push({ url: feed.url, lastUpdate });
       }).then(() => {
         if (feedsWithDate.length === state.feedsList.length) {
-          state.feedsList.splice(0);
+          state.feedsListClear();
           state.feedsList.push(...feedsWithDate);
           toLocalStorage('feeds', state.feedsList);
           setTimeout(() => update(state), 5000);

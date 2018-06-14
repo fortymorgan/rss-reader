@@ -18,10 +18,10 @@ export default (state) => {
         state.toRender.items.push(...itemsData);
         renderFeeds(state);
         state.rendered.items.push(...state.toRender.items);
-        state.toRender.items.splice(0);
+        state.toRenderClear.items();
       });
     state.rendered.feeds.push(feed);
   });
 
-  state.toRender.feeds.splice(0);
+  state.toRenderClear.feeds();
 };

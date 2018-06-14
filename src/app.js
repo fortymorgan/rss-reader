@@ -26,6 +26,17 @@ export default () => {
       feeds: getFeedsList(),
       items: [],
     },
+    toRenderClear: {
+      feeds: () => {
+        state.toRender.feeds = [];
+      },
+      items: () => {
+        state.toRender.items = [];
+      },
+    },
+    feedsListClear: () => {
+      state.feedsList = [];
+    },
   };
 
   const input = document.querySelector('input');
