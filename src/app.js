@@ -22,15 +22,24 @@ export default () => {
   const input = document.querySelector('input');
   const button = document.querySelector('button');
 
+  const toggleInputStyle = {
+    valid: () => {
+      input.classList.remove('is-invalid');
+      button.disabled = false;
+    },
+    invalid: () => {
+      input.classList.add('is-invalid');
+      button.disabled = true;
+    },
+  };
+
   input.addEventListener('input', () => {
     state.validInput = isInputValid(state);
 
     if (state.validInput || input.value === '') {
-      input.classList.remove('is-invalid');
-      button.disabled = false;
+      toggleInputStyle.valid();
     } else {
-      input.classList.add('is-invalid');
-      button.disabled = true;
+      toggleInputStyle.invalid();
     }
   });
 
