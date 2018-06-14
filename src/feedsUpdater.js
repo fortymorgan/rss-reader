@@ -1,6 +1,6 @@
 import { toLocalStorage } from './storage';
 import getRssData from './getter';
-import renderUpdated from './renderUpdated';
+import { renderUpdates } from './render';
 
 const update = (state) => {
   const feedsWithDate = [];
@@ -11,7 +11,7 @@ const update = (state) => {
           const renderedTitles = state.rendered.items.map(renderedItem => renderedItem.title);
           const newItems = itemsData.filter(item => !renderedTitles.includes(item.title));
           state.toRender.items.push(...newItems);
-          renderUpdated(state);
+          renderUpdates(state);
           state.rendered.items.push(...state.toRender.items);
         }
         state.toRender.items.splice(0);

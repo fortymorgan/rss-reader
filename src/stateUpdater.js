@@ -1,4 +1,4 @@
-import render from './renderFeeds';
+import { renderFeeds } from './render';
 import getRssData from './getter';
 import { toLocalStorage } from './storage';
 
@@ -16,7 +16,7 @@ export default (state) => {
     getRssData(feed)
       .then(({ itemsData }) => {
         state.toRender.items.push(...itemsData);
-        render(state);
+        renderFeeds(state);
         state.rendered.items.push(...state.toRender.items);
         state.toRender.items.splice(0);
       });
