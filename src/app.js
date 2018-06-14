@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import updateState from './stateUpdater';
 import isInputValid from './validator';
-import { getFeedsList } from './storage';
 import updateFeeds from './feedsUpdater';
+import State from './state';
 
 function modalCallback(event) {
   const modal = $('#modal');
@@ -15,29 +15,7 @@ function modalCallback(event) {
 }
 
 export default () => {
-  const state = {
-    feedsList: getFeedsList(),
-    validInput: false,
-    rendered: {
-      feeds: [],
-      items: [],
-    },
-    toRender: {
-      feeds: getFeedsList(),
-      items: [],
-    },
-    toRenderClear: {
-      feeds: () => {
-        state.toRender.feeds = [];
-      },
-      items: () => {
-        state.toRender.items = [];
-      },
-    },
-    feedsListClear: () => {
-      state.feedsList = [];
-    },
-  };
+  const state = new State();
 
   const input = document.querySelector('input');
   const button = document.querySelector('button');
