@@ -12,30 +12,29 @@ const clearErrorsAndInput = () => {
   errors.forEach(error => error.remove());
 };
 
-
-export const renderFeeds = (state) => {
-  clearErrorsAndInput();
-
-  const button = document.querySelector('button');
-
-  const listGroup = document.querySelector('.list-group');
-
-  state.toRender.items.forEach((item) => {
-    const html = `<li class="list-group-item">${generateItemHtml(item)}</li>`;
-    listGroup.innerHTML += html;
-  });
-  button.disabled = false;
-};
-
-export const renderUpdates = (state) => {
+const render = (state, addChildAction) => {
   const listGroup = document.querySelector('.list-group');
 
   state.toRender.items.forEach((item) => {
     const listItem = document.createElement('li');
     listItem.classList.add('list-group-item');
     listItem.innerHTML = generateItemHtml(item);
-    listGroup.prepend(listItem);
+    listGroup[addChildAction](listItem);
   });
+};
+
+export const renderFeeds = (state) => {
+  clearErrorsAndInput();
+
+  const button = document.querySelector('button');
+
+  render(state, 'append');
+
+  button.disabled = false;
+};
+
+export const renderUpdates = (state) => {
+  render(state, 'prepend');
 };
 
 export const renderErrors = (state) => {
