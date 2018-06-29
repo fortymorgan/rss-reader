@@ -1,22 +1,29 @@
 import getRssData from './getter';
+import * as actions from './actions';
+import { renderUpdates } from './render';
 
-const updateFeeds = (state) => {
+const updateFeeds = (store) => {
   const feedsWithDate = [];
+  const state = store.getState();
   state.feedsList.forEach((feed) => {
     getRssData(feed)
       .then(({ itemsData, lastUpdate }) => {
         if (feed.lastUpdate && new Date(feed.lastUpdate) < lastUpdate) {
-          const newItems = state.getNewItems(itemsData);
-          state.addItemsFromUpdate(newItems);
+          const { renderedItems } = store.getState();
+          const renderedTitles = renderedItems.map(renderedItem => renderedItem.title);
+          const newItems = itemsData.filter(item => !renderedTitles.includes(item.title));
+          store.dispatch(actions.addItemsToRender(newItems));
+          renderUpdates(newItems);
+          store.dispatch(actions.checkRenderedItems(newItems));
         }
 
         feedsWithDate.push({ url: feed.url, lastUpdate });
         if (feedsWithDate.length === state.feedsList.length) {
-          state.updateFeedsList(feedsWithDate);
-          setTimeout(() => updateFeeds(state), 5000);
+          store.dispatch(actions.updateFeedsList(feedsWithDate));
+          setTimeout(() => updateFeeds(store), 5000);
         }
       })
-      .catch(() => setTimeout(() => updateFeeds(state), 5000));
+      .catch(() => setTimeout(() => updateFeeds(store), 5000));
   });
 };
 

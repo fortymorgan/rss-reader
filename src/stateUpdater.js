@@ -1,23 +1,28 @@
 import getRssData from './getter';
+import * as actions from './actions';
+import { renderFeeds, renderErrors } from './render';
 
-export default (state) => {
+export default (store) => {
   const input = document.querySelector('input');
 
-  if (state.validInput) {
-    state.addToFeedsList(input.value);
-    state.addFeedToRender(input.value);
+  if (store.getState().validInput) {
+    store.dispatch(actions.addToFeedsList(input.value));
+    store.dispatch(actions.addFeedsToRender([{ url: input.value }]));
   }
 
-  state.toRender.feeds.forEach((feed) => {
+  store.getState().feedsToRender.forEach((feed) => {
     getRssData(feed)
       .then(({ itemsData }) => {
-        state.addItemsFromFeed(itemsData);
+        store.dispatch(actions.addItemsToRender(itemsData));
+        renderFeeds(itemsData);
+        store.dispatch(actions.checkRenderedItems(itemsData));
       })
       .catch(() => {
-        state.checkError(feed);
+        store.dispatch(actions.checkError(feed));
+        const { errors } = store.getState();
+        renderErrors(errors);
+        store.dispatch(actions.clearErrors());
       });
-    state.checkRenderedFeed(feed);
+    store.dispatch(actions.checkRenderedFeed(feed));
   });
-
-  state.clearFeedsToRender();
 };

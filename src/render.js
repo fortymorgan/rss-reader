@@ -12,10 +12,10 @@ const clearErrorsAndInput = () => {
   errors.forEach(error => error.remove());
 };
 
-const render = (state, addChildAction) => {
+const render = (items, addChildAction) => {
   const listGroup = document.querySelector('.list-group');
 
-  state.toRender.items.forEach((item) => {
+  items.forEach((item) => {
     const listItem = document.createElement('li');
     listItem.classList.add('list-group-item');
     listItem.innerHTML = generateItemHtml(item);
@@ -23,22 +23,22 @@ const render = (state, addChildAction) => {
   });
 };
 
-export const renderFeeds = (state) => {
+export const renderFeeds = (items) => {
   clearErrorsAndInput();
 
   const button = document.querySelector('button');
 
-  render(state, 'append');
+  render(items, 'append');
 
   button.disabled = false;
 };
 
-export const renderUpdates = (state) => {
-  render(state, 'prepend');
+export const renderUpdates = (items) => {
+  render(items, 'prepend');
 };
 
-export const renderErrors = (state) => {
-  state.errors.forEach((error) => {
+export const renderErrors = (errors) => {
+  errors.forEach((error) => {
     const errorMessage = document.createElement('div');
     errorMessage.setAttribute('class', 'alert alert-danger alert-dismissible fade show');
     errorMessage.setAttribute('role', 'alert');
