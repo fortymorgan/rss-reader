@@ -1,5 +1,5 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const path = require('path');
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
@@ -13,15 +13,20 @@ module.exports = {
         },
       },
       {
+        test: /\.jsx?$/,
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+      },
+      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'template.html',
-      filename: path.resolve(__dirname, 'index.html'),
-    }),
-  ],
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     template: 'template.html',
+  //     filename: path.resolve(__dirname, 'index.html'),
+  //   }),
+  // ],
 };

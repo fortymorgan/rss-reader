@@ -14,7 +14,9 @@ parser: babel-eslint
 extends:
   - 'airbnb-base'
   - 'plugin:jest/recommended'
+  - 'plugin:react/recommended'
 
 rules:
   no-console: 0
   no-underscore-dangle: 0
+  react/prop-types: 0
