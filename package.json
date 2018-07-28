@@ -10,6 +10,7 @@
     "prepublishOnly": "npm run build",
     "eslint": "eslint",
     "webpack": "webpack",
+    "watch": "webpack --watch",
     "surge": "surge"
   },
   "repository": {
