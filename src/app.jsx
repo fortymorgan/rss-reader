@@ -9,15 +9,11 @@ import { getFeedsList } from './storage';
 import * as actions from './actions';
 
 export default () => {
-  const ext = window.__REDUX_DEVTOOLS_EXTENSION__;
-  const devtoolMiddleware = ext && ext();
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   const store = createStore(
     reducers,
-    compose(
-      applyMiddleware(thunk),
-      devtoolMiddleware,
-    ),
+    composeEnhancers(applyMiddleware(thunk)),
   );
 
   const feedsFromStorage = getFeedsList();
