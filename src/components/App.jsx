@@ -1,6 +1,6 @@
 import React from 'react';
 import InputFormContainer from '../containers/InputForm';
-import ItemsListContainer from '../containers/ItemsList';
+import FeedsList from '../containers/FeedsList';
 import ErrorsContainer from '../containers/Errors';
 
 const App = () => (
@@ -9,7 +9,7 @@ const App = () => (
     <InputFormContainer />
     <hr className="my-4" />
     <ErrorsContainer />
-    <ItemsListContainer />
+    <FeedsList />
   </div>
 );
 

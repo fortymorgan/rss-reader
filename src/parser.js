@@ -4,6 +4,8 @@ export default (xml) => {
 
   const items = [...xml.querySelectorAll('item')];
 
+  const feedTitle = xml.querySelector('title').textContent;
+
   const itemsData = items.map((item) => {
     const title = item.querySelector('title').textContent;
     const descriptionElement = item.querySelector('description');
@@ -12,5 +14,5 @@ export default (xml) => {
     return { title, description, link };
   });
 
-  return { itemsData, lastUpdate };
+  return { itemsData, lastUpdate, feedTitle };
 };

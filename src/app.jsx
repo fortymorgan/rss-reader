@@ -17,6 +17,10 @@ export default () => {
   );
 
   const feedsFromStorage = getFeedsList();
+  const lastId = Object.keys(feedsFromStorage).sort((a, b) => b - a)[0];
+  if (lastId) {
+    store.dispatch(actions.updateNextId(+lastId));
+  }
   store.dispatch(actions.downloadOnStart(feedsFromStorage));
 
   const mountNode = document.getElementById('container');

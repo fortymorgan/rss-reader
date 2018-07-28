@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
-import ItemsList from '../components/ItemsList.jsx';
+import FeedsList from '../components/FeedsList.jsx';
 import * as actionCreators from '../actions';
 
 const mapStateToProps = (state) => {
-  const { itemsList } = state;
+  const { feedsList, itemsList } = state;
 
-  return { itemsList };
+  return { feedsList: Object.values(feedsList), itemsList };
 };
 
 export default connect(
   mapStateToProps,
   actionCreators,
-)(ItemsList);
+)(FeedsList);

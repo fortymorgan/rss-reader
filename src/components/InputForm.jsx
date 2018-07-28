@@ -5,9 +5,15 @@ import isInputValid from '../validator';
 export default class InputForm extends React.Component {
   onAdd = (e) => {
     e.preventDefault();
-    const { validInput, input, addNewFeed } = this.props;
+    const {
+      validInput,
+      input,
+      addNewFeed,
+      nextId,
+    } = this.props;
+
     if (validInput) {
-      addNewFeed(input);
+      addNewFeed(input, nextId);
     }
   }
 
