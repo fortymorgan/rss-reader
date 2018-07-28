@@ -4,6 +4,16 @@ import { reduxForm, Field } from 'redux-form';
 import isInputValid from '../validator';
 
 class InputForm extends React.Component {
+  validate = (value, list) => {
+    const { validateInput, rejectInput } = this.props;
+
+    if (isInputValid(value, list)) {
+      validateInput();
+    } else {
+      rejectInput();
+    }
+  }
+
   onAdd = (values) => {
     const { validInput, addNewFeed, nextId } = this.props;
 
@@ -11,31 +21,17 @@ class InputForm extends React.Component {
   }
 
   onInput = (e) => {
-    console.log(e);
-    const { validateInput, rejectInput, feedsList } = this.props;
+    const { feedsList } = this.props;
 
-    if (isInputValid(e.target.value, feedsList)) {
-      validateInput();
-    } else {
-      rejectInput();
-    }
+    this.validate(e.target.value, feedsList);
   }
 
   onExample = (e) => {
     e.preventDefault();
-    const {
-      changeInput,
-      feedsList,
-      validateInput,
-      rejectInput,
-    } = this.props;
+    const { changeInput, feedsList } = this.props;
     changeInput(e.target.href);
 
-    if (isInputValid(e.target.href, feedsList)) {
-      validateInput();
-    } else {
-      rejectInput();
-    }
+    this.validate(e.target.href, feedsList);
   }
 
   render() {
