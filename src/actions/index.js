@@ -10,11 +10,6 @@ export const addToItems = createAction('ITEMS_ADD', (items, feedId) => ({ items,
 export const addNewItems = createAction('NEW_ITEMS_ADD', (items, feedId) => ({ items, feedId }));
 export const updateNextId = createAction('NEXT_ID_UPDATE', id => ({ id }));
 export const removeFeed = createAction('FEED_REMOVE', id => ({ id }));
-// export const addFeedsToRender = createAction('FEED_TO_RENDER_ADD', feeds => ({ feeds }));
-// export const clearErrors = createAction('ERRORS_CLEAR');
-// export const checkRenderedFeed = createAction('RENDERED_FEED_CHECK', feed => ({ feed }));
-// export const checkRenderedItems = createAction('RENDERED_ITEMS_CHECK', items => ({ items }));
-// export const addItemsToRender = createAction('ITEMS_TO_RENDER_ADD', items => ({ items }));
 export const validateInput = createAction('INPUT_VALIDATE');
 export const rejectInput = createAction('INPUT_REJECT');
 

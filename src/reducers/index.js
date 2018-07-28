@@ -71,36 +71,6 @@ const nextId = handleActions({
   },
 }, 0);
 
-// const renderedFeeds = handleActions({
-//   [actions.checkRenderedFeed](state, { payload: { feed } }) {
-//     return [...state, feed];
-//   },
-// }, []);
-
-// const renderedItems = handleActions({
-//   [actions.checkRenderedItems](state, { payload: { items } }) {
-//     return [...state, ...items];
-//   },
-// }, []);
-
-// const feedsToRender = handleActions({
-//   [actions.addFeedsToRender](state, { payload: { feeds } }) {
-//     return [...state, ...feeds];
-//   },
-//   [actions.checkRenderedFeed](state, { payload: { feed } }) {
-//     return state.filter(item => item !== feed);
-//   },
-// }, []);
-
-// const itemsToRender = handleActions({
-//   [actions.addItemsToRender](state, { payload: { items } }) {
-//     return [...state, items];
-//   },
-//   [actions.checkRenderedItems]() {
-//     return [];
-//   },
-// }, []);
-
 export default combineReducers({
   feedsList,
   validInput,
@@ -108,8 +78,4 @@ export default combineReducers({
   itemsList,
   errors,
   nextId,
-  // renderedFeeds,
-  // renderedItems,
-  // feedsToRender,
-  // itemsToRender,
 });

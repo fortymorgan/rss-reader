@@ -1,6 +1,3 @@
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const path = require('path');
-
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
   module: {
@@ -23,10 +20,4 @@ module.exports = {
       },
     ],
   },
-  // plugins: [
-  //   new HtmlWebpackPlugin({
-  //     template: 'template.html',
-  //     filename: path.resolve(__dirname, 'index.html'),
-  //   }),
-  // ],
 };
