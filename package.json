@@ -4,11 +4,10 @@
   "description": "Simple RSS reader",
   "main": "index.js",
   "scripts": {
-    "test": "exit 0",
+    "test": "eslint .",
     "babel-node": "babel-node",
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
     "prepublishOnly": "npm run build",
-    "eslint": "eslint",
     "webpack": "webpack",
     "watch": "webpack --watch",
     "surge": "surge --domain rssreader-s258.surge.sh"
