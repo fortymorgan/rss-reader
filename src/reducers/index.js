@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 import _ from 'lodash';
+import { reducer as formReducer } from 'redux-form';
 import { toLocalStorage } from '../storage';
 import * as actions from '../actions';
 
@@ -21,15 +22,6 @@ const feedsList = handleActions({
     return newState;
   },
 }, {});
-
-const input = handleActions({
-  [actions.changeInput](state, { payload: { text } }) {
-    return text;
-  },
-  [actions.addToFeedsList]() {
-    return '';
-  },
-}, '');
 
 const validInput = handleActions({
   [actions.validateInput]() {
@@ -73,9 +65,9 @@ const nextId = handleActions({
 
 export default combineReducers({
   feedsList,
-  validInput,
-  input,
   itemsList,
   errors,
   nextId,
+  validInput,
+  form: formReducer,
 });
