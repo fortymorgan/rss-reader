@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import reducers from './reducers';
 import App from './components/App.jsx';
 import { getFeedsList } from './storage';
@@ -22,6 +24,9 @@ export default () => {
     store.dispatch(actions.updateNextId(+lastId));
   }
   store.dispatch(actions.downloadOnStart(feedsFromStorage));
+
+  library.add(faChevronDown);
+  library.add(faChevronUp);
 
   const mountNode = document.getElementById('container');
   ReactDOM.render(
