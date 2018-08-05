@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import parseRssXml from './parser';
 
 const corsProxy = 'https://cors-anywhere.herokuapp.com/';
