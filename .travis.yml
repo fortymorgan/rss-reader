@@ -3,7 +3,8 @@ node_js:
   - "8"
 
 script:
-  - make build
+  - npm test
+  - npm run webpack
 
 after_success:
-  - make publish
+  - npm run surge --project ./ --domain rssreader-s258.surge.sh
