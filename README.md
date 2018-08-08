@@ -13,7 +13,7 @@ Mobile version:
 <img src="https://github.com/fortymorgan/rss-reader/blob/master/screenshots/Mobile.png" width=320 alt="Mobile" title="Mobile version" />
 
 ## How to develop
-To run the project locally first you need to:
+To run the project locally first you need to install all dependencies with:
 ```
 npm install
 ```
