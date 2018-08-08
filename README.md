@@ -5,8 +5,39 @@ This app allows to subscribe to RSS feeds and read news from them. Reader will u
 [![Maintainability](https://api.codeclimate.com/v1/badges/c1a78efaefd85ef4a29c/maintainability)](https://codeclimate.com/github/fortymorgan/project-lvl3-s258/maintainability)
 [![Build Status](https://travis-ci.org/fortymorgan/rss-reader.svg?branch=master)](https://travis-ci.org/fortymorgan/rss-reader)
 
+### Screenshots
+Desktop version:  
+<img src="https://github.com/fortymorgan/rss-reader/blob/master/screenshots/Desktop.png" alt="Desktop" title="Desktop version" />
+
+Mobile version:  
+<img src="https://github.com/fortymorgan/rss-reader/blob/master/screenshots/Mobile.png" width=320 alt="Mobile" title="Mobile version" />
+
+## How to develop
+To run the project locally first you need to:
+```
+npm install
+```
+Then create `main.js` bundle with:
+```
+npm run build
+```
+Then open `index.html`
+
+## How to deploy
+First you need to install [Surge](http://surge.sh)
+```
+npm install -g surge
+```
+Change domain prefix for `publish` script in `Makefile`, then run:
+```
+make publish
+```
+If it your first run, Surge will ask you for email and password and create an account for you.  
+Then the project will be deployed for domain, which you used in `Makefile` script.  
+(If domain is already used, Surge will tell about that).
+
 ## How to use
-Go to [app](http://rssreader-s258.surge.sh/)
+Open the [app](http://rssreader-s258.surge.sh/)
 
 ### Add feed
 Enter a feed URL to the field "New feed" and click "Add" or press "Enter". New feed will apeear in the feeds list.
