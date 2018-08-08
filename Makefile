@@ -11,4 +11,4 @@ build:
 	npm run webpack
 
 publish:
-	npm run surge --project ./ --domain rssreader-s258.surge.sh
+	npm run webpack && npm run surge
