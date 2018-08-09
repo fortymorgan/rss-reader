@@ -11,7 +11,7 @@
     "eslint": "eslint",
     "webpack": "webpack",
     "watch": "webpack --watch",
-    "surge": "surge --project ./ --domain rssreader-s258.surge.sh"
+    "deploy": "surge --project ./ --domain rssreader-s258.surge.sh"
   },
   "repository": {
     "type": "git",
