@@ -19,21 +19,21 @@ npm install
 ```
 Then create `main.js` bundle with:
 ```
-make build
+npm run watch
 ```
-Then open `index.html`
+Then open `index.html`.
 
 ## How to deploy
 First you need to install [Surge](http://surge.sh)
 ```
 npm install -g surge
 ```
-Change domain prefix for `surge` script in `package.json`, then run:
+Change domain prefix for `deploy` script in `package.json`, then run:
 ```
-make publish
+npm run deploy
 ```
 If it your first run, Surge will ask you for email and password and create an account for you.  
-Then the project will be deployed for domain, which you used in `package.json` `surge` script.  
+Then the project will be deployed for domain, which you used in `package.json` `deploy` script.  
 (If domain is already used, Surge will tell about that).
 
 ## How to use
