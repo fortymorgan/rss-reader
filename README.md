@@ -6,6 +6,7 @@ This app allows to subscribe to RSS feeds and read news from them. Reader will u
 [![Build Status](https://travis-ci.org/fortymorgan/rss-reader.svg?branch=master)](https://travis-ci.org/fortymorgan/rss-reader)
 
 ### Screenshots
+
 #### Desktop
 <img src="https://github.com/fortymorgan/rss-reader/blob/master/screenshots/Desktop.png" alt="Desktop" title="Desktop version" />
 
